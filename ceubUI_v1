@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        /* Estilos CSS podem ser adicionados aqui */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+        .info h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil do Usuário</h1>
+        <div id="dadosUsuario">
+            <h2>Informações Pessoais</h2>
+            <form id="formDadosUsuario">
+                <input type="text" id="nome" placeholder="Nome" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" id="telefone" placeholder="Telefone" required>
+                <input type="submit" value="Salvar Informações">
+            </form>
+        </div>
+        <div class="info" id="infoUsuario" style="display: none;">
+            <h2>Informações Pessoais</h2>
+            <p><span id="nomeUsuario"></span></p>
+            <p><span id="emailUsuario"></span></p>
+            <p><span id="telefoneUsuario"></span></p>
+            <!-- Adicione mais informações pessoais aqui -->
+        </div>
+        <div class="info" id="acoesUsuario" style="display: none;">
+            <h2>Configurações da Conta</h2>
+            <a href="#" id="linkAlterarSenha">Alterar Senha</a><br>
+            <a href="#" id="linkEditarInfo">Editar Informações Pessoais</a>
+            <!-- Adicione mais opções de configuração da conta aqui -->
+        </div>
+        <div id="alterarSenha" style="display: none;">
+            <h2>Alterar Senha</h2>
+            <form id="formAlterarSenha" action="alterar_senha.php" method="post">
+                <input type="password" name="senhaAtual" placeholder="Senha Atual" required>
+                <input type="password" name="novaSenha" placeholder="Nova Senha" required>
+                <input type="password" name="confirmarNovaSenha" placeholder="Confirmar Nova Senha" required>
+                <input type="submit" value="Alterar Senha">
+                <div id="mensagemSenha"></div>
+            </form>
+        </div>
+        <div id="editarInfo" style="display: none;">
+            <h2>Editar Informações Pessoais</h2>
+            <form id="formEditarInfo">
+                <input type="text" name="nome" id="editNome" placeholder="Nome" required>
+                <input type="email" name="email" id="editEmail" placeholder="Email" required>
+                <input type="text" name="telefone" id="editTelefone" placeholder="Telefone" required>
+                <input type="button" value="Salvar Alterações" id="salvarAlteracoes">
+                <div id="mensagemEditar"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formDadosUsuario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+            var telefone = document.getElementById('telefone').value;
+            document.getElementById('nomeUsuario').textContent = nome;
+            document.getElementById('emailUsuario').textContent = email;
+            document.getElementById('telefoneUsuario').textContent = telefone;
+            document.getElementById('dadosUsuario').style.display = 'none';
+            document.getElementById('infoUsuario').style.display = 'block';
+            document.getElementById('acoesUsuario').style.display = 'block';
+        });
+
+        document.getElementById('linkAlterarSenha').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('alterarSenha').style.display = 'block';
+            document.getElementById('editarInfo').style.display = 'none';
+        });
+
+        document.getElementById('linkEditarInfo').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('editarInfo').style.display = 'block';
+            document.getElementById('alterarSenha').style.display = 'none';
+            // Preencher os campos de edição com as informações atuais do usuário
+            document.getElementById('editNome').value = document.getElementById('nomeUsuario').textContent;
+            document.getElementById('editEmail').value = document.getElementById('emailUsuario').textContent;
+            document.getElementById('editTelefone').value = document.getElementById('telefoneUsuario').textContent;
+        });
+
+        document.getElementById('salvarAlteracoes').addEventListener('click', function(event) {
+            var editNome = document.getElementById('editNome').value;
+            var editEmail = document.getElementById('editEmail').value;
+            var editTelefone = document.getElementById('editTelefone').value;
+
+            // Simulação de envio dos dados para o servidor
+            // Aqui você deve enviar os dados para o servidor usando AJAX ou Fetch API
+
+            // Exibindo mensagem de sucesso
+            var mensagemEditar = document.getElementById('mensagemEditar');
+            mensagemEditar.textContent = 'Informações atualizadas com sucesso!';
+            mensagemEditar.style.color = 'green';
+
+            // Atualizando as informações exibidas na página
+            document.getElementById('nomeUsuario').textContent = editNome;
+            document.getElementById('emailUsuario').textContent = editEmail;
+            document.getElementById('telefoneUsuario').textContent = editTelefone;
+
+            // Limpando os campos de edição
+            document.getElementById('editNome').value = '';
+            document.getElementById('editEmail').value = '';
+            document.getElementById('editTelefone').value = '';
+
+            // Ocultando a mensagem de sucesso após 3 segundos
+            setTimeout(function() {
+                mensagemEditar.textContent = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
