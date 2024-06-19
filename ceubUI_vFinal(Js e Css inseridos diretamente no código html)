@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marktplace</title>
+    <style>
+        /* Estilos CSS podem ser adicionados aqui */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para ajustar a posição da imagem */
+            overflow: hidden; /* Para evitar que a imagem exceda os limites do container */
+        }
+        h1 {
+            text-align: center;
+        }
+        .corner-image {
+            position: absolute; /* Posicionamento absoluto para se sobrepor ao conteúdo */
+            top: 20px; /* Distância do topo */
+            left: 20px; /* Distância da esquerda */
+            width: 300px; /* Largura da imagem */
+            height: auto; /* Altura automática proporcional */
+            z-index: 9999; /* Z-index alto para garantir que fique acima dos outros elementos */
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar a imagem */
+        }
+    </style>
+</head>
+<body>
+    <!-- Elemento de imagem para a foto -->
+    <img src="https://www.sejabixo.com.br/wp-content/uploads/2021/05/vestibular-ceub-2021-2-semestre.jpg" alt="Foto no canto da tela" class="corner-image">
+    <title>Perfil do Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+        .info h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #00b330c6;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="submit"], input[type="button"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil do Usuário</h1>
+        <div id="dadosUsuario">
+            <h2>Informações Pessoais</h2>
+            <form id="formDadosUsuario">
+                <input type="text" id="nome" placeholder="Nome" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" id="telefone" placeholder="Telefone" required>
+                <input type="submit" value="Salvar Informações">
+            </form>
+        </div>
+        <div class="info" id="infoUsuario" style="display: none;">
+            <h2>Informações Pessoais</h2>
+            <p><strong>Nome:</strong> <span id="nomeUsuario"></span></p>
+            <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
+            <p><strong>Telefone:</strong> <span id="telefoneUsuario"></span></p>
+        </div>
+        <div class="info" id="acoesUsuario" style="display: none;">
+            <h2>Configurações da Conta</h2>
+            <a href="#" class="btn" id="linkCriarSenha">Criar Senha</a>
+            <a href="#" class="btn" id="linkAlterarSenha">Alterar Senha</a>
+            <a href="#" class="btn" id="linkEditarInfo">Editar Informações Pessoais</a>
+        </div>
+        <div id="criarSenha" style="display: none;">
+            <h2>Criar Senha</h2>
+            <form id="formCriarSenha">
+                <input type="password" id="novaSenhaCriar" placeholder="Nova Senha" required>
+                <input type="password" id="confirmarNovaSenhaCriar" placeholder="Confirmar Nova Senha" required>
+                <input type="submit" value="Criar Senha">
+                <div id="mensagemCriarSenha"></div>
+            </form>
+        </div>
+        <div id="alterarSenha" style="display: none;">
+            <h2>Alterar Senha</h2>
+            <form id="formAlterarSenha">
+                <input type="password" id="senhaAtual" placeholder="Senha Atual" required>
+                <input type="password" id="novaSenha" placeholder="Nova Senha" required>
+                <input type="password" id="confirmarNovaSenha" placeholder="Confirmar Nova Senha" required>
+                <input type="submit" value="Alterar Senha">
+                <div id="mensagemAlterarSenha"></div>
+            </form>
+        </div>
+        <div id="editarInfo" style="display: none;">
+            <h2>Editar Informações Pessoais</h2>
+            <form id="formEditarInfo">
+                <input type="text" id="editNome" placeholder="Nome" required>
+                <input type="email" id="editEmail" placeholder="Email" required>
+                <input type="text" id="editTelefone" placeholder="Telefone" required>
+                <input type="button" value="Salvar Alterações" id="salvarAlteracoes">
+                <div id="mensagemEditar"></div>
+            </form>
+        </div>
+        <div id="historicoPedidos">
+            <h2>Histórico de Pedidos</h2>
+            <form id="formPedidos">
+                <input type="date" id="dataPedido" required>
+                <input type="text" id="idPedido" placeholder="ID do Pedido" required>
+                <input type="text" id="tipoCompra" placeholder="Tipo de Compra" required>
+                <select id="formaPagamento" required>
+                    <option value="">Forma de Pagamento</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Boleto">Boleto</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Transferência Bancária">Transferência Bancária</option>
+                </select>
+                <input type="submit" value="Adicionar Pedido">
+            </form>
+            <button id="cadastrarNovoPedido" style="display: none;">Cadastrar Novo Pedido</button>
+            <table id="tabelaPedidos" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>ID</th>
+                        <th>Tipo de Compra</th>
+                        <th>Forma de Pagamento</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let senhaArmazenada = null;
+        const pedidos = [];
+
+        document.getElementById('formDadosUsuario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            document.getElementById('nomeUsuario').textContent = nome;
+            document.getElementById('emailUsuario').textContent = email;
+            document.getElementById('telefoneUsuario').textContent = telefone;
+            document.getElementById('dadosUsuario').style.display = 'none';
+            document.getElementById('infoUsuario').style.display = 'block';
+            document.getElementById('acoesUsuario').style.display = 'block';
+        });
+
+        document.getElementById('linkCriarSenha').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('criarSenha').style.display = 'block';
+            document.getElementById('alterarSenha').style.display = 'none';
+            document.getElementById('editarInfo').style.display = 'none';
+        });
+
+        document.getElementById('formCriarSenha').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const novaSenha = document.getElementById('novaSenhaCriar').value;
+            const confirmarNovaSenha = document.getElementById('confirmarNovaSenhaCriar').value;
+
+            const mensagemCriarSenha = document.getElementById('mensagemCriarSenha');
+            if (novaSenha === confirmarNovaSenha) {
+                senhaArmazenada = novaSenha;
+                mensagemCriarSenha.textContent = 'Senha criada com sucesso!';
+                mensagemCriarSenha.style.color = 'green';
+            } else {
+                mensagemCriarSenha.textContent = 'Erro ao criar a senha. As senhas não coincidem.';
+                mensagemCriarSenha.style.color = 'red';
+            }
+
+            setTimeout(() => mensagemCriarSenha.textContent = '', 3000);
+        });
+
+        document.getElementById('linkAlterarSenha').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('alterarSenha').style.display = 'block';
+            document.getElementById('criarSenha').style.display = 'none';
+            document.getElementById('editarInfo').style.display = 'none';
+        });
+
+        document.getElementById('formAlterarSenha').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const senhaAtual = document.getElementById('senhaAtual').value;
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmarNovaSenha = document.getElementById('confirmarNovaSenha').value;
+
+            const mensagemAlterarSenha = document.getElementById('mensagemAlterarSenha');
+            if (senhaAtual === senhaArmazenada && novaSenha === confirmarNovaSenha) {
+                senhaArmazenada = novaSenha;
+                mensagemAlterarSenha.textContent = 'Senha alterada com sucesso!';
+                mensagemAlterarSenha.style.color = 'green';
+            } else {
+                mensagemAlterarSenha.textContent = 'Erro ao alterar a senha. Verifique se a senha atual está correta e se as novas senhas coincidem.';
+                mensagemAlterarSenha.style.color = 'red';
+            }
+
+            setTimeout(() => mensagemAlterarSenha.textContent = '', 3000);
+        });
+
+        document.getElementById('linkEditarInfo').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('editarInfo').style.display = 'block';
+            document.getElementById('alterarSenha').style.display = 'none';
+            document.getElementById('criarSenha').style.display = 'none';
+
+            document.getElementById('editNome').value = document.getElementById('nomeUsuario').textContent;
+            document.getElementById('editEmail').value = document.getElementById('emailUsuario').textContent;
+            document.getElementById('editTelefone').value = document.getElementById('telefoneUsuario').textContent;
+        });
+
+        document.getElementById('salvarAlteracoes').addEventListener('click', function(event) {
+            const editNome = document.getElementById('editNome').value;
+            const editEmail = document.getElementById('editEmail').value;
+            const editTelefone = document.getElementById('editTelefone').value;
+
+            document.getElementById('nomeUsuario').textContent = editNome;
+            document.getElementById('emailUsuario').textContent = editEmail;
+            document.getElementById('telefoneUsuario').textContent = editTelefone;
+
+            const mensagemEditar = document.getElementById('mensagemEditar');
+            mensagemEditar.textContent = 'Informações atualizadas com sucesso!';
+            mensagemEditar.style.color = 'green';
+
+            setTimeout(() => mensagemEditar.textContent = '', 3000);
+        });
+
+        document.getElementById('formPedidos').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const dataPedido = document.getElementById('dataPedido').value;
+            const idPedido = document.getElementById('idPedido').value;
+            const tipoCompra = document.getElementById('tipoCompra').value;
+            const formaPagamento = document.getElementById('formaPagamento').value;
+
+            const pedido = {
+                data: dataPedido,
+                id: idPedido,
+                tipo: tipoCompra,
+                forma: formaPagamento
+            };
+            pedidos.push(pedido);
+            atualizarTabelaPedidos();
+
+            document.getElementById('formPedidos').style.display = 'none';
+            document.getElementById('cadastrarNovoPedido').style.display = 'block';
+        });
+
+        document.getElementById('cadastrarNovoPedido').addEventListener('click', function() {
+            document.getElementById('formPedidos').reset();
+            document.getElementById('formPedidos').style.display = 'block';
+            document.getElementById('cadastrarNovoPedido').style.display = 'none';
+        });
+
+        function atualizarTabelaPedidos() {
+            const tabelaPedidos = document.getElementById('tabelaPedidos');
+            const tbody = tabelaPedidos.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            pedidos.forEach(pedido => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${pedido.data}</td>
+                    <td>${pedido.id}</td>
+                    <td>${pedido.tipo}</td>
+                    <td>${pedido.forma}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            tabelaPedidos.style.display = pedidos.length > 0 ? 'table' : 'none';
+        }
+    </script>
+</body>
+</html>
