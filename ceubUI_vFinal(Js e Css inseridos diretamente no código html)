@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marktplace</title>
     <style>
-        /* Estilos CSS podem ser adicionados aqui */
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -13,26 +12,25 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative; /* Para ajustar a posição da imagem */
-            overflow: hidden; /* Para evitar que a imagem exceda os limites do container */
+            position: relative; 
+            overflow: hidden; 
         }
         h1 {
             text-align: center;
         }
         .corner-image {
-            position: absolute; /* Posicionamento absoluto para se sobrepor ao conteúdo */
-            top: 20px; /* Distância do topo */
-            left: 20px; /* Distância da esquerda */
-            width: 300px; /* Largura da imagem */
-            height: auto; /* Altura automática proporcional */
-            z-index: 9999; /* Z-index alto para garantir que fique acima dos outros elementos */
-            border-radius: 8px; /* Bordas arredondadas */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar a imagem */
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            width: 300px;
+            height: auto; 
+            z-index: 9999;
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
         }
     </style>
 </head>
 <body>
-    <!-- Elemento de imagem para a foto -->
     <img src="https://www.sejabixo.com.br/wp-content/uploads/2021/05/vestibular-ceub-2021-2-semestre.jpg" alt="Foto no canto da tela" class="corner-image">
     <title>Perfil do Usuário</title>
     <style>
@@ -74,7 +72,7 @@
             transition: background-color 0.3s;
         }
         .btn:hover {
-            background-color: #00b330c6;
+            background-color: #00b330;
         }
         form {
             margin-top: 20px;
