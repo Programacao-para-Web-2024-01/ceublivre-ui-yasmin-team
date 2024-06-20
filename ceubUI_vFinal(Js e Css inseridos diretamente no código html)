@@ -110,6 +110,24 @@
         th {
             background-color: #f4f4f4;
         }
+        input:required, select:required, textarea:required {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#criarSenha {
+    display: none;
+}
+.fa-eye, .fa-eye-slash {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+
     </style>
 </head>
 <body>
@@ -136,10 +154,13 @@
             <a href="#" class="btn" id="linkAlterarSenha">Alterar Senha</a>
             <a href="#" class="btn" id="linkEditarInfo">Editar Informações Pessoais</a>
         </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
         <div id="criarSenha" style="display: none;">
             <h2>Criar Senha</h2>
             <form id="formCriarSenha">
                 <input type="password" id="novaSenhaCriar" placeholder="Nova Senha" required>
+                <i class="fas fa-eye" id="toggleSenhaCriar" style="cursor: pointer;"></i>
                 <input type="password" id="confirmarNovaSenhaCriar" placeholder="Confirmar Nova Senha" required>
                 <input type="submit" value="Criar Senha">
                 <div id="mensagemCriarSenha"></div>
@@ -198,6 +219,24 @@
     <script>
         let senhaArmazenada = null;
         const pedidos = [];
+const toggleSenhaCriar = document.getElementById('toggleSenhaCriar');
+toggleSenhaCriar.addEventListener('click', function() {
+    const novaSenhaInput = document.getElementById('novaSenhaCriar');
+    const confirmarNovaSenhaInput = document.getElementById('confirmarNovaSenhaCriar');
+    
+    if (novaSenhaInput.type === 'password') {
+        novaSenhaInput.type = 'text';
+        confirmarNovaSenhaInput.type = 'text';
+        toggleSenhaCriar.classList.remove('fa-eye');
+        toggleSenhaCriar.classList.add('fa-eye-slash');
+    } else {
+        novaSenhaInput.type = 'password';
+        confirmarNovaSenhaInput.type = 'password';
+        toggleSenhaCriar.classList.remove('fa-eye-slash');
+        toggleSenhaCriar.classList.add('fa-eye');
+    }
+});
+
 
         document.getElementById('formDadosUsuario').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -213,29 +252,41 @@
         });
 
         document.getElementById('linkCriarSenha').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.getElementById('criarSenha').style.display = 'block';
-            document.getElementById('alterarSenha').style.display = 'none';
-            document.getElementById('editarInfo').style.display = 'none';
-        });
+    event.preventDefault();
+    document.getElementById('criarSenha').style.display = 'block';
+    document.getElementById('alterarSenha').style.display = 'none';
+    document.getElementById('editarInfo').style.display = 'none';
+    document.getElementById('mensagemCriarSenha').textContent = '';
+});
+
 
         document.getElementById('formCriarSenha').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const novaSenha = document.getElementById('novaSenhaCriar').value;
-            const confirmarNovaSenha = document.getElementById('confirmarNovaSenhaCriar').value;
+    event.preventDefault(); 
 
-            const mensagemCriarSenha = document.getElementById('mensagemCriarSenha');
-            if (novaSenha === confirmarNovaSenha) {
-                senhaArmazenada = novaSenha;
-                mensagemCriarSenha.textContent = 'Senha criada com sucesso!';
-                mensagemCriarSenha.style.color = 'green';
-            } else {
-                mensagemCriarSenha.textContent = 'Erro ao criar a senha. As senhas não coincidem.';
-                mensagemCriarSenha.style.color = 'red';
-            }
 
-            setTimeout(() => mensagemCriarSenha.textContent = '', 3000);
-        });
+    const novaSenha = document.getElementById('novaSenhaCriar').value;
+    const confirmarNovaSenha = document.getElementById('confirmarNovaSenhaCriar').value;
+
+
+    if (novaSenha === confirmarNovaSenha) {
+   
+        senhaArmazenada = novaSenha;
+
+     
+        const mensagemCriarSenha = document.getElementById('mensagemCriarSenha');
+        mensagemCriarSenha.textContent = 'Senha criada com sucesso!';
+        mensagemCriarSenha.style.color = 'green';
+
+        setTimeout(() => mensagemCriarSenha.textContent = '', 3000);
+    } else {
+
+        const mensagemCriarSenha = document.getElementById('mensagemCriarSenha');
+        mensagemCriarSenha.textContent = 'Erro ao criar a senha. As senhas não coincidem.';
+        mensagemCriarSenha.style.color = 'red';
+    }
+});
+
+
 
         document.getElementById('linkAlterarSenha').addEventListener('click', function(event) {
             event.preventDefault();
@@ -275,20 +326,30 @@
         });
 
         document.getElementById('salvarAlteracoes').addEventListener('click', function(event) {
-            const editNome = document.getElementById('editNome').value;
-            const editEmail = document.getElementById('editEmail').value;
-            const editTelefone = document.getElementById('editTelefone').value;
+    event.preventDefault(); 
+    const editNome = document.getElementById('editNome').value;
+    const editEmail = document.getElementById('editEmail').value;
+    const editTelefone = document.getElementById('editTelefone').value;
 
-            document.getElementById('nomeUsuario').textContent = editNome;
-            document.getElementById('emailUsuario').textContent = editEmail;
-            document.getElementById('telefoneUsuario').textContent = editTelefone;
 
-            const mensagemEditar = document.getElementById('mensagemEditar');
-            mensagemEditar.textContent = 'Informações atualizadas com sucesso!';
-            mensagemEditar.style.color = 'green';
+    if (editNome && editEmail && editTelefone) {
+        
+        document.getElementById('nomeUsuario').textContent = editNome;
+        document.getElementById('emailUsuario').textContent = editEmail;
+        document.getElementById('telefoneUsuario').textContent = editTelefone;
 
-            setTimeout(() => mensagemEditar.textContent = '', 3000);
-        });
+       
+        const mensagemEditar = document.getElementById('mensagemEditar');
+        mensagemEditar.textContent = 'Informações atualizadas com sucesso!';
+        mensagemEditar.style.color = 'green';
+
+        setTimeout(() => mensagemEditar.textContent = '', 3000);
+    } else {
+        const mensagemEditar = document.getElementById('mensagemEditar');
+        mensagemEditar.textContent = 'Todos os campos devem ser preenchidos.';
+        mensagemEditar.style.color = 'red';
+    }
+});
 
         document.getElementById('formPedidos').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -314,8 +375,28 @@
             document.getElementById('formPedidos').reset();
             document.getElementById('formPedidos').style.display = 'block';
             document.getElementById('cadastrarNovoPedido').style.display = 'none';
-        });
+        });function validarSenha(senha) {
 
+    if (senha.length < 8) {
+        return false;
+    }
+o
+    if (!/[0-9]/.test(senha)) {
+        return false;
+    }
+
+
+    if (!/[!@#$%^&*]/.test(senha)) {
+        return false;
+    }
+    if (!/[a-z]/.test(senha) || !/[A-Z]/.test(senha)) {
+        return false;
+    }
+
+    return true;
+}
+
+            
         function atualizarTabelaPedidos() {
             const tabelaPedidos = document.getElementById('tabelaPedidos');
             const tbody = tabelaPedidos.querySelector('tbody');
