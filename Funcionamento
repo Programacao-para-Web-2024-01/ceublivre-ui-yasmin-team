@@ -1,0 +1,38 @@
+O código HTML é estruturado assim:
+
+Metadados e Estilos:
+Define o charset e a viewport para compatibilidade e responsividade.
+Inclui um título para a página e um estilo embutido para estilização básica.
+Corpo da Página:
+Um div com a classe .container que envolve todo o conteúdo visível.
+Inclui um cabeçalho <h1> com o título "Perfil do Usuário".
+Seções de Informações:
+dadosUsuario: Formulário inicial para coletar nome, email e telefone do usuário.
+infoUsuario: Div oculta que mostra as informações pessoais após serem preenchidas e salvas.
+acoesUsuario: Div oculta que contém botões para criar senha, alterar senha e editar informações pessoais.
+criarSenha: Formulário para criar uma nova senha, mostrado ao clicar no botão "Criar Senha".
+alterarSenha: Formulário para alterar a senha existente, mostrado ao clicar no botão "Alterar Senha".
+editarInfo: Formulário para editar informações pessoais, mostrado ao clicar no botão "Editar Informações Pessoais".
+historicoPedidos: Seção final com um formulário para adicionar pedidos e uma tabela para exibir o histórico de pedidos.
+JavaScript para Funcionalidades Interativas
+O JavaScript embutido no final do documento é responsável por tornar a página interativa:
+Variáveis e Inicialização:
+senhaArmazenada: Variável para armazenar a senha do usuário.
+pedidos: Array vazio para armazenar os pedidos adicionados pelo usuário.
+Toggle de Visibilidade da Senha:
+Adiciona um evento ao ícone de olho ao criar senha para alternar a visibilidade das senhas entre texto simples e asteriscos.
+Salvar Informações do Usuário:
+Ao enviar o formulário formDadosUsuario, captura os dados de nome, email e telefone e exibe na seção infoUsuario.
+Criar Senha:
+Mostra o formulário criarSenha ao clicar no botão "Criar Senha".
+Valida se as senhas inseridas coincidem antes de armazenar a nova senha na variável senhaArmazenada.
+Alterar Senha:
+Mostra o formulário alterarSenha ao clicar no botão "Alterar Senha".
+Valida se a senha atual está correta e se as novas senhas coincidem antes de atualizar senhaArmazenada.
+Editar Informações Pessoais:
+Mostra o formulário editarInfo ao clicar no botão "Editar Informações Pessoais".
+Permite editar nome, email e telefone, validando se todos os campos são preenchidos antes de atualizar infoUsuario.
+Adicionar Pedidos:
+Ao enviar o formulário formPedidos, adiciona um novo pedido ao array pedidos e atualiza a tabela tabelaPedidos.
+Atualizar Tabela de Pedidos:
+Função para dinamicamente atualizar a tabela de histórico de pedidos com os dados contidos no array pedidos.
